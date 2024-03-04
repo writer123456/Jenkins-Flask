@@ -1,1 +1,51 @@
+name: Deploy to EC2
 
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checking out code on Runner
+      uses: actions/checkout@v4
+
+    - name: login to EC2
+      uses: appleboy/ssh-action@v1.0.3
+             
+      with:
+        host: ${{secrets.EC2_HOST}}
+        username: ${{secrets.EC2_USERNAME}}
+        key: ${{secrets.EC2_SSH_KEY}}
+        port: 22
+        script: |
+          pwd
+          whoami
+          sudo apt-get update -y
+          sudo apt-get install nginx -y
+          sudo mkdir -p /var/www/html
+          sudo chown -R ${{secrets.EC2_USERNAME}} /var/www/html
+          sudo chmod -R 755 /var/www/html
+
+    - name: Copy file via SSH password
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{secrets.EC2_HOST}}
+        username: ${{secrets.EC2_USERNAME}}
+        key: ${{secrets.EC2_SSH_KEY}}
+        port: 22
+        source: ./
+        target: /var/www/html
+
+    - name: Restart Nginx
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{secrets.EC2_HOST}}
+        username: ${{secrets.EC2_USERNAME}}
+        key: ${{secrets.EC2_SSH_KEY}}
+        port: 22
+        script: |
+          sudo systemctl restart nginx
