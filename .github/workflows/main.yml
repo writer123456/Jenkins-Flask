@@ -41,6 +41,7 @@ jobs:
         target: ./
         script: |
           git clone https://github.com/writer123456/Jenkins-Flask.git
+          cd Jenkins-Flask
         # target: /var/www/html
 
     - name: Restart Nginx
