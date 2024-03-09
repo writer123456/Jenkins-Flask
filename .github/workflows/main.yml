@@ -46,7 +46,9 @@ jobs:
           # sudo chown -R ${{secrets.EC2_USERNAME}} /Jenkins-Flask/app.py
           sudo chmod -R 777 Jenkins-Flask/app.py
           cd Jenkins-Flask
-          python3 app.py
+          sudo pip3 install flask
+          sudo pkill -f "python app.py"
+          sudo python3 app.py
         # target: /var/www/html
 
     - name: Restart Nginx
