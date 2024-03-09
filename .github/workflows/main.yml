@@ -43,6 +43,8 @@ jobs:
         target: ./
         script: |
           git clone https://github.com/writer123456/Jenkins-Flask.git
+          sudo chown -R ${{secrets.EC2_USERNAME}} /Jenkins-Flask/app.py
+          sudo chmod -R 777 /Jenkins-Flask/app.py
           cd Jenkins-Flask
           python3 app.py
         # target: /var/www/html
