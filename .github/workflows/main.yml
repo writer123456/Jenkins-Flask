@@ -26,6 +26,7 @@ jobs:
           whoami
           sudo apt-get update -y
           sudo apt-get install nginx -y
+          sudo apt-get install -y python3
           sudo mkdir -p /var/www/html
           sudo chown -R ${{secrets.EC2_USERNAME}} /var/www/html
           sudo chmod -R 755 /var/www/html
@@ -42,6 +43,7 @@ jobs:
         script: |
           git clone https://github.com/writer123456/Jenkins-Flask.git
           cd Jenkins-Flask
+          python3 app.py
         # target: /var/www/html
 
     - name: Restart Nginx
