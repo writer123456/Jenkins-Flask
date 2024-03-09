@@ -26,7 +26,8 @@ jobs:
           whoami
           sudo apt-get update -y
           sudo apt-get install nginx -y
-          sudo apt-get install -y python3
+          sudo apt-get install -y python3 python3-pip
+          pip3 install flask
           sudo mkdir -p /var/www/html
           sudo chown -R ${{secrets.EC2_USERNAME}} /var/www/html
           sudo chmod -R 755 /var/www/html
