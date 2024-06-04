@@ -91,8 +91,12 @@ pipeline {
                         // bat 'robocopy . ${STAGING_DIR} /E /XD ${STAGING_DIR}'
                         bat "cd ${STAGING_DIR}"
                         bat 'dir'
-                        bat'cd C:\\Users\\USER'
-                        bat 'dir'
+                        // bat'cd C:\\Users\\USER'
+                        // bat 'dir'
+                        bat """
+                            cd C:\\Users\\USER
+                            dir
+                            """
                         // bat "git clone ${GITHUB_URL}"
                         // git branch: env.GITHUB_BRANCH, url: env.GITHUB_URL
                         bat 'echo Deployment complete.'
