@@ -90,7 +90,7 @@ pipeline {
                            
                         // bat 'robocopy . ${STAGING_DIR} /E /XD ${STAGING_DIR}'
                         bat 'cd ${STAGING_DIR}'
-                        bat 'git clone https://github.com/writer123456/Jenkins-Flask.git'
+                        bat 'git clone $GITHUB_URL'
                         bat 'echo Deployment complete.'
                             
                        
