@@ -89,7 +89,7 @@ pipeline {
                             """
                            
                         // bat 'robocopy . ${STAGING_DIR} /E /XD ${STAGING_DIR}'
-                        bat 'cd ${STAGING_DIR}'
+                        bat "cd ${STAGING_DIR}"
                         bat "git clone ${GITHUB_URL}"
                         // git branch: env.GITHUB_BRANCH, url: env.GITHUB_URL
                         bat 'echo Deployment complete.'
