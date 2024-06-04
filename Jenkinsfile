@@ -95,6 +95,7 @@ pipeline {
                         // bat 'dir'
                         bat """
                             cd C:\\Users\\USER
+                            git clone ${GITHUB_URL}
                             dir
                             """
                         // bat "git clone ${GITHUB_URL}"
