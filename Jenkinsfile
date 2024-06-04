@@ -88,7 +88,8 @@ pipeline {
                             REM Copy files to staging server
                             """
                            
-                        bat 'robocopy . ${STAGING_DIR} /E /XD ${STAGING_DIR}'
+                        // bat 'robocopy . ${STAGING_DIR} /E /XD ${STAGING_DIR}'
+                        bat 'cd ${STAGING_DIR}'
                         bat 'echo Deployment complete.'
                             
                        
